@@ -1,0 +1,46 @@
+﻿@page
+@model Signin
+@{
+    ViewData["Title"] = "Registro";
+}
+<section class="d-flex">
+    <div>@Html.ValidationSummary(false, "", new { @class = "text-danger"})</div>
+    <form method="post" id="login-form" class="align-content-center d-grid p-5">
+        <div class="form-group border rounded-pill align-content-center d-grid p-5">
+            <div class="d-grid p-2">
+                <h2 class="text-center">Registro</h2>
+            </div>
+            <div class="d-grid p-2">
+                <label class="text-center p-2">Email</label>
+                <input asp-for="AddUser.Email" class="text-center" type="text" name="email"></input>
+                <span class="text-danger">@Html.ValidationMessage("Email")</span>
+            </div>
+            <div class="d-grid p-2">
+                <label class="text-center p-2">Contraseña</label>
+                <input asp-for="AddUser.Password" class="text-center" type="password" name="password"></input>
+                <span class="text-danger">@Html.ValidationMessage("Password")</span>
+            </div>
+            <div class="d-grid p-2">
+                <label class="text-center p-2">Nombre</label>
+                <input asp-for="AddUser.Name" class="text-center" type="text" name="name"></input>
+                <span class="text-danger">@Html.ValidationMessage("Name")</span>
+                <label class="text-center p-2">Apellido</label>
+                <input class="text-center" asp-for="AddUser.Surname" type="text" name="surname"></input>
+            </div>
+            <div class="d-grid p-5">
+                <button type="submit" class="btn btn-default border bg-light rounded-pill">Registrarme</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<style>
+    section {
+        align-items: center;
+        justify-content: center;
+    }
+
+    form {
+        flex-basis: 50rem;
+    }
+</style>

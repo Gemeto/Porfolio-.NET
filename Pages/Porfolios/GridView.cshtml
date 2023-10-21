@@ -1,0 +1,49 @@
+﻿@page
+@model WebApplicationTest.Pages.GridViewModel
+@{
+    ViewData["Title"] = "Portafolio";
+}
+<section>
+    <div class="grid-container">
+        @foreach (var row in Model.jobExperiences)
+        {
+            <div class="porfolio-card">
+                <table>
+                    <tr>
+                        <th>
+                        <img class="p-5" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
+                    </th>
+                    <th>
+                        <h2 class="text-end p-3">@row.Title</h2>
+                    </th>
+                    </tr>
+                </table>
+                <div>
+                   <p class="p-3 text-center">@row.Description</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<style>
+    .grid-container{
+        display:grid;
+        gap: 1rem;
+        grid-auto-flow: dense;
+        grid-auto-rows: 15rem;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+    table {
+        width:100%;
+    }
+    img{
+        width:15rem;
+        height:10rem;
+    }
+    .porfolio-card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        -webkit-border-radius: 5rem;
+        transition: 2.3s;
+        width: 85%;
+    }
+</style>
