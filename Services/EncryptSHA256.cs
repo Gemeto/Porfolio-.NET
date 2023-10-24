@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace WebApplicationTest.Services
+namespace PorfolioWeb.Services
 {
     public class EncryptSHA256
     {
@@ -16,7 +16,7 @@ namespace WebApplicationTest.Services
         }
         public string GetSHA256(string str)
         {
-            byte[] stream = null;
+            byte[]? stream = null;
             stream = _sha256.ComputeHash(_encoding.GetBytes(str));
             for (int i = 0; i < stream.Length; i++) _sb.AppendFormat("{0:x2}", stream[i]);
             return _sb.ToString();

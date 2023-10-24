@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PorfolioWeb.Models.Domain;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplicationTest.Models.Domain;
+namespace PorfolioWeb.Models.Domain;
 
 public class JobExperience
 {
@@ -11,6 +12,12 @@ public class JobExperience
     public string Title { get; set; } = null!;
 
     public string? Description { get; set; }
+
+    [ForeignKey("Image")]
+    public int? ImageId { get; set; }
+
+    public virtual Image? Image { get; set; }
+
     [Required]
     [ForeignKey("User")]
     public int UserId { get; set; }

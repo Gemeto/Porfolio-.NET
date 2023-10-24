@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using WebApplicationTest.Models.Context;
-using WebApplicationTest.Models.Domain;
+using PorfolioWeb.Models.Context;
+using PorfolioWeb.Models.Domain;
 
-namespace WebApplicationTest.Pages.Porfolios
+namespace PorfolioWeb.Pages.Porfolios
 {
     [Authorize(AuthenticationSchemes = "MyAuthScheme")]
     public class EditModel : PageModel

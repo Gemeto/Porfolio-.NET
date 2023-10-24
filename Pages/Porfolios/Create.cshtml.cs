@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using WebApplicationTest.Models.Context;
-using WebApplicationTest.Models.Domain;
+using PorfolioWeb.Models.Context;
+using PorfolioWeb.Models.Domain;
 
-namespace WebApplicationTest.Pages.Porfolios
+namespace PorfolioWeb.Pages.Porfolios
 {
     [Authorize(AuthenticationSchemes = "MyAuthScheme")]
     public class CreateModel : PageModel

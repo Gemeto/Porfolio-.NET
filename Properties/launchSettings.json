@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WebApplicationTest": {
+    "PorfolioWeb": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

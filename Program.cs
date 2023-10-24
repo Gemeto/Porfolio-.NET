@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplicationTest.Models.Context;
-using WebApplicationTest.Services;
+using PorfolioWeb.Models.Context;
+using PorfolioWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +26,6 @@ builder.Services.AddMvc().AddRazorPagesOptions(options =>
     options.Conventions.AllowAnonymousToPage("/Users/Signin");
     options.Conventions.AllowAnonymousToPage("/Users/Login");
     options.Conventions.AllowAnonymousToPage("/Porfolios/GridView");
-//    options.Conventions.AddPageRoute("/Porfolios/GridView", "/");
 });
 
 builder.Services.AddSingleton<EncryptSHA256>();

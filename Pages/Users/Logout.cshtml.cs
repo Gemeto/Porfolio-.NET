@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApplicationTest.Pages.Users
+namespace PorfolioWeb.Pages.Users
 {
     [Authorize(AuthenticationSchemes="MyAuthScheme")]
     public class LogoutModel : PageModel

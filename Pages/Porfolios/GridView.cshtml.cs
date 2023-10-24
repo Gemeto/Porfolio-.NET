@@ -1,15 +1,14 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationTest.Models.Context;
-using WebApplicationTest.Models.Domain;
+using PorfolioWeb.Models.Context;
+using PorfolioWeb.Models.Domain;
 
-namespace WebApplicationTest.Pages
+namespace PorfolioWeb.Pages
 {
     public class GridViewModel : PageModel
     {
         public List<JobExperience> jobExperiences;
-        public User mainUser;
+        public User? mainUser;
 
         private readonly PortafolioContext _porfolioContext;
 
@@ -17,6 +16,7 @@ namespace WebApplicationTest.Pages
         {
             _porfolioContext = porfolioContext;
             jobExperiences = new List<JobExperience>();
+            mainUser = null;
         }
 
         public async Task OnGet(int? userId)

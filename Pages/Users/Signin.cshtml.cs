@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApplicationTest.Models.Context;
-using WebApplicationTest.Models.Domain;
+using PorfolioWeb.Models.Context;
+using PorfolioWeb.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
-using WebApplicationTest.Models;
-using WebApplicationTest.Services;
+using PorfolioWeb.Models;
+using PorfolioWeb.Services;
 
-namespace WebApplicationTest.Pages
+namespace PorfolioWeb.Pages
 {
     public class Signin : PageModel
     {

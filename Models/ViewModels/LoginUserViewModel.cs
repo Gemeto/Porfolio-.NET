@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplicationTest.Models;
+namespace PorfolioWeb.Models;
 
 public partial class LoginUserViewModel
 {
