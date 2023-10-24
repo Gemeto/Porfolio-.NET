@@ -26,7 +26,7 @@ builder.Services.AddMvc().AddRazorPagesOptions(options =>
     options.Conventions.AllowAnonymousToPage("/Users/Signin");
     options.Conventions.AllowAnonymousToPage("/Users/Login");
     options.Conventions.AllowAnonymousToPage("/Porfolios/GridView");
-    options.Conventions.AddPageRoute("/Porfolios/GridView", "/");
+//    options.Conventions.AddPageRoute("/Porfolios/GridView", "/");
 });
 
 builder.Services.AddSingleton<EncryptSHA256>();

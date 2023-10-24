@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+section {
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    flex-basis: 50rem;
+}

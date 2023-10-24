@@ -1,25 +1,31 @@
-﻿@page
+﻿@page "{userId:int?}"
 @model WebApplicationTest.Pages.GridViewModel
 @{
     ViewData["Title"] = "Portafolio";
 }
-<section>
+<section class="user-card-container">
+    <div class="user-card flex-row">
+        <div class="user-main-img rounded bg-gradient">
+            <img class="job-experiences-card-main-img" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
+        </div>
+        <div class="user-info">
+            <p>Email: @Model.mainUser.Email</p>
+            <p>Nombre: @Model.mainUser.Name @Model.mainUser.Surname</p>
+            <p>Desarrollador full-stack, con más experiencia en el back-end!</p>
+        </div>
+    </div>
+</section>
+<section class="job-experiences-container">
     <div class="grid-container">
         @foreach (var row in Model.jobExperiences)
         {
-            <div class="porfolio-card">
-                <table>
-                    <tr>
-                        <th>
-                        <img class="p-5" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
-                    </th>
-                    <th>
-                        <h2 class="text-end p-3">@row.Title</h2>
-                    </th>
-                    </tr>
-                </table>
-                <div>
-                   <p class="p-3 text-center">@row.Description</p>
+            <div class="job-experiences-card">
+                <div class="job-experiences-card-header">
+                    <img class="job-experiences-card-main-img" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
+                    <h2 class="job-experiences-card-title">@row.Title</h2>
+                </div>
+                <div class="job-experiences-card-body">
+                    <p class="job-experiences-card-desciption p-3 text-center">@row.Description</p>
                 </div>
             </div>
         }
@@ -28,19 +34,59 @@
 <style>
     .grid-container{
         display:grid;
-        gap: 1rem;
         grid-auto-flow: dense;
         grid-auto-rows: 15rem;
-        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
     }
-    table {
-        width:100%;
+
+    .user-card {
+        display: flex;
+        flex-direction: row;
+        height: clamp(1px, 50vh, 30rem);
+        width: 100%;
+        place-content: end space-between;
+        margin-top: 1rem;
     }
-    img{
-        width:15rem;
-        height:10rem;
+
+    .job-experiences-card-header {
+        display: flex;
+        flex-direction: row;
+        height: clamp(1px, 5vh, 5rem);
+        width: 100%;
+        place-content: end space-between;
+        margin-top: 1rem;
     }
-    .porfolio-card{
+
+    .job-experiences-card-header {
+        display: flex;
+        flex-direction: row;
+        height: clamp(1px, 5vh, 5rem);
+        width: 100%;
+        place-content: end space-between;
+        margin-top: 1rem;
+    }
+
+    .job-experiences-card-body {
+        text-overflow: ellipsis;
+        overflow-wrap: break-word;
+        overflow-x:hidden;
+        overflow-y:hidden;
+        height:9rem;
+    }
+
+    .job-experiences-card-title {
+        margin-right: 3rem;
+    }
+
+    .job-experiences-card-main-img {
+        margin-left: 3rem;
+    }
+
+    .job-experiences-card-desciption {
+        word-wrap: break-word;
+    }
+
+    .job-experiences-card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         -webkit-border-radius: 5rem;
         transition: 2.3s;

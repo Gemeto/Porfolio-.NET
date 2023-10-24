@@ -5,33 +5,32 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Creación</h1>
 
-<h4>JobExperience</h4>
+<h4>Experiencia laboral</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="JobExperience.Title" class="control-label"></label>
-                <input asp-for="JobExperience.Title" class="form-control" />
-                <span asp-validation-for="JobExperience.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="JobExperience.Description" class="control-label"></label>
-                <input asp-for="JobExperience.Description" class="form-control" />
-                <span asp-validation-for="JobExperience.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+
+<section class="d-flex">
+    <form method="post" id="login-form" class="align-content-center d-grid p-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group p-3">
+            <label asp-for="JobExperience.Title" class="control-label"></label>
+            <input asp-for="JobExperience.Title" class="form-control" />
+            <span asp-validation-for="JobExperience.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group p-3">
+            <label asp-for="JobExperience.Description" class="control-label"></label>
+            <input asp-for="JobExperience.Description" class="form-control" />
+            <span asp-validation-for="JobExperience.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group p-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</section>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Atrás</a>
 </div>
 
 @section Scripts {
