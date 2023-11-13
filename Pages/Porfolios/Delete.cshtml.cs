@@ -2,17 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PorfolioWeb.Models.Context;
-using PorfolioWeb.Models.Domain;
+using PorfolioWeb.Models;
+using PorfolioWeb.Services.Context;
 
 namespace PorfolioWeb.Pages.Porfolios
 {
     [Authorize(AuthenticationSchemes = "MyAuthScheme")]
     public class DeleteModel : PageModel
     {
-        private readonly PortafolioContext _context;
+        private readonly PortafolioContextService _context;
 
-        public DeleteModel(PortafolioContext context)
+        public DeleteModel(PortafolioContextService context)
         {
             _context = context;
         }

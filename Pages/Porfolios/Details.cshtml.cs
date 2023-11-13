@@ -2,17 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PorfolioWeb.Models.Context;
-using PorfolioWeb.Models.Domain;
+using PorfolioWeb.Models;
+using PorfolioWeb.Services.Context;
 
 namespace PorfolioWeb.Pages.Porfolios
 {
     [Authorize(AuthenticationSchemes = "MyAuthScheme")]
     public class DetailsModel : PageModel
     {
-        private readonly PortafolioContext _context;
+        private readonly PortafolioContextService _context;
 
-        public DetailsModel(PortafolioContext context)
+        public DetailsModel(PortafolioContextService context)
         {
             _context = context;
         }

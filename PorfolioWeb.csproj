@@ -19,4 +19,13 @@
     <PackageReference Include="MySqlConnector" Version="2.2.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\uploads\1920_733-1631527767.jpeg" />
+  </ItemGroup>
+
 </Project>

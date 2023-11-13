@@ -11,7 +11,7 @@
 <hr />
 
 <section class="d-flex">
-    <form method="post" id="login-form" class="align-content-center d-grid p-5">
+    <form method="post" id="login-form" EncType="multipart/form-data" class="align-content-center d-grid p-5">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="JobExperience.Id" />
         <div class="form-group p-3">
@@ -23,6 +23,11 @@
             <label asp-for="JobExperience.Description" class="control-label"></label>
             <input asp-for="JobExperience.Description" class="form-control" />
             <span asp-validation-for="JobExperience.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group p-3">
+            <label asp-for="mainImage" class="control-label" />
+            <input type="file" asp-for="mainImage"/>
+            <span asp-validation-for="mainImage" class="text-danger"></span>
         </div>
         <div class="form-group p-3">
             <input type="submit" value="Save" class="btn btn-primary" />

@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PorfolioWeb.Models.Context;
-using PorfolioWeb.Models.Domain;
+using PorfolioWeb.Models;
+using PorfolioWeb.Services.Context;
 
 namespace PorfolioWeb.Pages
 {
     public class GridViewModel : PageModel
     {
         public List<JobExperience> jobExperiences;
-        public User? mainUser;
+        public WebUser? mainUser;
 
-        private readonly PortafolioContext _porfolioContext;
+        private readonly PortafolioContextService _porfolioContext;
 
-        public GridViewModel(PortafolioContext porfolioContext)
+        public GridViewModel(PortafolioContextService porfolioContext)
         {
             _porfolioContext = porfolioContext;
             jobExperiences = new List<JobExperience>();
@@ -27,10 +27,10 @@ namespace PorfolioWeb.Pages
             }
             else
             {
-                mainUser = await _porfolioContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                mainUser = await _porfolioContext.Users.Include(u => u.MainImage).FirstOrDefaultAsync(x => x.Id == userId);
 
             }
-            jobExperiences = await _porfolioContext.JobExperiences.Where(x => x.UserId == mainUser.Id).ToListAsync();
+            jobExperiences = await _porfolioContext.JobExperiences.Where(x => x.UserId == mainUser.Id).Include( jexp => jexp.Image).ToListAsync();
         }
     }
 }

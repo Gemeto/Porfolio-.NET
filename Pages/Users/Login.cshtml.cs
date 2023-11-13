@@ -1,27 +1,35 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PorfolioWeb.Models.Context;
-using PorfolioWeb.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using PorfolioWeb.Models;
+using PorfolioWeb.Services.Context;
+using System.ComponentModel.DataAnnotations;
 using PorfolioWeb.Services;
 
 namespace PorfolioWeb.Pages
 {
     public class Login : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly PortafolioContext _porfolioContext;
-        private readonly EncryptSHA256 _encryptSHA256;
         [BindProperty]
-        public LoginUserViewModel loginUserViewModel { get; set; }
-        public Login(IHttpContextAccessor httpContextAccessor, PortafolioContext portafolioContext, EncryptSHA256 encryptSHA256)
+        [Required]
+        [StringLength(255)]
+        public string Email { get; set; } = null!;
+
+        [BindProperty]
+        [Required]
+        [StringLength(255)]
+        public string Password { get; set; } = null!;
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly PortafolioContextService _porfolioContext;
+        private readonly EncryptSHA256Service _encryptSHA256;
+
+        public Login(IHttpContextAccessor httpContextAccessor, PortafolioContextService portafolioContext, EncryptSHA256Service encryptSHA256)
         {
             _httpContextAccessor = httpContextAccessor;
             _porfolioContext = portafolioContext;
             _encryptSHA256 = encryptSHA256;
-            loginUserViewModel = new LoginUserViewModel();
         }
 
         public void OnGet()
@@ -33,12 +41,10 @@ namespace PorfolioWeb.Pages
             if (ModelState.IsValid)
             {
                 IFormCollection form = await Request.ReadFormAsync();
-                string? email = form["email"];
-                string? password = form["password"];
-                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password))
                 {
-                    password = _encryptSHA256.GetSHA256(password);
-                    User? user = _porfolioContext.Users.FirstOrDefault(x => x.Email.ToLower() == email.ToLower() && x.Password == password);
+                    String password = await _encryptSHA256.GetSHA256(Password);
+                    WebUser? user = _porfolioContext.Users.FirstOrDefault(x => x.Email.ToLower() == Email.ToLower() && x.Password == password);
                     if (user != null)
                     {
                         CookieLogin(user);
@@ -50,20 +56,20 @@ namespace PorfolioWeb.Pages
             return Page();
         }
 
-        private async void CookieLogin(User user)
+        private async void CookieLogin(WebUser user)
         {
-            var claims = new List<Claim>
+            List<Claim> claims = new List<Claim>
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Email, user.Email)};
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Email, user.Email)
+            };
 
-            var claimsIdentity = new ClaimsIdentity(claims, "MyAuthScheme");
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "MyAuthScheme");
 
-            await _httpContextAccessor.HttpContext
-                .SignInAsync("MyAuthScheme",
-                    new ClaimsPrincipal(claimsIdentity),
-                    new AuthenticationProperties());
+            await _httpContextAccessor.HttpContext.SignInAsync("MyAuthScheme",
+                new ClaimsPrincipal(claimsIdentity),
+                new AuthenticationProperties());
         }
     }
 }

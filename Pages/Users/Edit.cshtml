@@ -1,0 +1,83 @@
+﻿@page
+@model PorfolioWeb.Pages.Users.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MainUser.Id" />
+            <div class="form-group">
+                <label asp-for="MainUser.Email" class="control-label"></label>
+                <input asp-for="MainUser.Email" class="form-control" />
+                <span asp-validation-for="MainUser.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainUser.Password" class="control-label"></label>
+                <input asp-for="MainUser.Password" class="form-control" />
+                <span asp-validation-for="MainUser.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainUser.Name" class="control-label"></label>
+                <input asp-for="MainUser.Name" class="form-control" />
+                <span asp-validation-for="MainUser.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainUser.Surname" class="control-label"></label>
+                <input asp-for="MainUser.Surname" class="form-control" />
+                <span asp-validation-for="MainUser.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainUser.Description" class="control-label"></label>
+                <input asp-for="MainUser.Description" class="form-control" />
+                <span asp-validation-for="MainUser.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainImage" class="control-label">Imagen principal</label>
+                <div class="user-main-img rounded bg-gradient">
+                    <img id="main-img" class="job-experiences-card-main-img" src="@Model.MainUser.MainImage?.Path" />
+                </div>
+                <input type="file" asp-for="MainImage" class="form-control" onchange="previewFile(this.files[0])"></input>
+                <span asp-validation-for="MainImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+<style>
+    .job-experiences-card-main-img {
+        margin-left: 3rem;
+        max-width: 25rem;
+        max-height: 25rem;
+    }
+</style>
+<script>
+
+
+    function previewFile(file) {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function () {
+            let img = document.getElementById('main-img')
+            img.src = reader.result
+        }
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

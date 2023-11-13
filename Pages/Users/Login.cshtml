@@ -11,12 +11,12 @@
             </div>
             <div class="d-grid p-3">
                 <label class="text-center p-2">Email</label>
-                <input asp-for="loginUserViewModel.Email" class="text-center" type="text" name="email"></input>
+                <input asp-for="Email" class="text-center" type="text" name="email"></input>
                 <span class="text-danger">@Html.ValidationMessage("Email")</span>
             </div>
             <div class="d-grid p-2">
                 <label class="text-center p-2">Contraseña</label>
-                <input asp-for="loginUserViewModel.Password" class="text-center" type="password" name="password"></input>
+                <input asp-for="Password" class="text-center" type="password" name="password"></input>
                 <span class="text-danger">@Html.ValidationMessage("Password")</span>
             </div>
             <div class="d-grid p-2">

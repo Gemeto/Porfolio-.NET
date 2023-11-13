@@ -6,7 +6,7 @@
 <section class="user-card-container">
     <div class="user-card flex-row">
         <div class="user-main-img rounded bg-gradient">
-            <img class="job-experiences-card-main-img" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
+            <img class="job-experiences-card-main-img" src="@Model.mainUser.MainImage?.Path" />
         </div>
         <div class="user-info">
             <p>Email: @Model.mainUser.Email</p>
@@ -21,7 +21,7 @@
         {
             <div class="job-experiences-card">
                 <div class="job-experiences-card-header">
-                    <img class="job-experiences-card-main-img" src="https://intersys.uy/wp-content/uploads/2018/10/Dominio.uy_.jpg" />
+                    <img class="job-experiences-card-main-img" src="@row.Image?.Path" />
                     <h2 class="job-experiences-card-title">@row.Title</h2>
                 </div>
                 <div class="job-experiences-card-body">
@@ -80,6 +80,8 @@
 
     .job-experiences-card-main-img {
         margin-left: 3rem;
+        max-width: 25rem;
+        max-height: 25rem;
     }
 
     .job-experiences-card-desciption {

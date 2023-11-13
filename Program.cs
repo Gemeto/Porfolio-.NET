@@ -1,13 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using PorfolioWeb.Models.Context;
+using Microsoft.Extensions.FileProviders;
 using PorfolioWeb.Services;
+using PorfolioWeb.Services.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-builder.Services.AddDbContext<PortafolioContext>(
+builder.Services.AddDbContext<PortafolioContextService>(
     options => options.UseMySQL(
         builder.Configuration.GetConnectionString("MySql")??""));
 
@@ -20,7 +18,7 @@ builder.Services.AddAuthentication("MyAuthScheme")
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddMvc().AddRazorPagesOptions(options =>
+builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
 {
     options.Conventions.AuthorizeFolder("/");
     options.Conventions.AllowAnonymousToPage("/Users/Signin");
@@ -28,15 +26,13 @@ builder.Services.AddMvc().AddRazorPagesOptions(options =>
     options.Conventions.AllowAnonymousToPage("/Porfolios/GridView");
 });
 
-builder.Services.AddSingleton<EncryptSHA256>();
+builder.Services.AddSingleton<EncryptSHA256Service>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
